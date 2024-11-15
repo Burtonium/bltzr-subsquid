@@ -1,0 +1,14 @@
+type IntermediaryAccountEntity @entity {
+  id: ID! # Address of the intermediary
+  treasury: String! # Treasury Address
+  deposits: [UserDepositEntity!]! @derivedFrom(field: "intermediary")
+}
+
+type UserDepositEntity @entity {
+  id: ID!
+  userAddress: String! # Address of the user
+  intermediary: IntermediaryAccountEntity! # Link to intermediary
+  amount: BigInt! # Deposit amount
+  block: BigInt! # Block number
+  timestamp: BigInt! # Transaction timestamp
+}

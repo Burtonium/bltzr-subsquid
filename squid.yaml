@@ -1,0 +1,19 @@
+manifestVersion: subsquid.io/v0.1
+name: hello-squid
+version: 1
+description: The very first evm squid from manifest
+build:
+deploy:
+  addons:
+    postgres:
+    rpc:
+      - eth.http
+  processor:
+    - name: intermediary-processor
+      cmd: ["sqd", "process:prod"]
+    - name: deposits-processor
+      cmd: ["sqd", "process:deposits"]
+  api:
+    cmd:
+      - sqd
+      - serve:prod
